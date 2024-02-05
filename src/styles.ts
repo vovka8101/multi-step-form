@@ -58,7 +58,5 @@ export const AppStyled = styled.div`
   max-width: 940px;
   margin: 105px auto;
   padding: 1rem;
-  display: flex;
-  gap: 1em;
   background-color: white;
 `

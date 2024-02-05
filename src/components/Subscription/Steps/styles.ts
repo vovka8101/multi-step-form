@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import bgImg from "../../assets/images/bg-sidebar-desktop.svg"
+import bgImg from "../../../assets/images/bg-sidebar-desktop.svg"
 
 export const StyledSteps = styled.aside`
   flex-basis: 30%;

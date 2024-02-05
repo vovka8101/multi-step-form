@@ -30,11 +30,6 @@ export type TAddons = {
   selected: boolean
 }
 
-export type TStepsData = {
-  currentStep: number
-  steps: TStep[]
-}
-
 export type TFormData = {
   userInfo: TUserInfo
   plan: TPlan
