@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { TFormData } from "../../types/subscription.types"
+import { PLAN_PERIOD, PLAN_TYPE, TFormData } from "../../types/subscription.types"
 import Forms from "./Forms/Forms"
 import Steps from "./Steps/Steps"
 import { SubscriptionStyled } from "./styles"
@@ -11,11 +11,12 @@ const initialFormData: TFormData = {
     phone: ""
   },
   plan: {
-    period: "month",
+    period: PLAN_PERIOD.mo,
+    selectedPlan: PLAN_TYPE.Arcade,
     data: [
-      {name: "Arcade", price: 9, icon: "icon-arcade.svg"},
-      {name: "Advanced", price: 12, icon: "icon-advanced.svg"},
-      {name: "Pro", price: 15, icon: "icon-pro.svg"}
+      {name: PLAN_TYPE.Arcade, price: 9, icon: "icon-arcade.svg"},
+      {name: PLAN_TYPE.Advanced, price: 12, icon: "icon-advanced.svg"},
+      {name: PLAN_TYPE.Pro, price: 15, icon: "icon-pro.svg"}
     ]
   },
   addons: [

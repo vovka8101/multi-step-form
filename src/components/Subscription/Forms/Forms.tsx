@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { TFormData, TPlan, TUserInfo } from "../../../types/subscription.types"
+import { PLAN_PERIOD, PLAN_TYPE, TFormData, TPlan, TUserInfo } from "../../../types/subscription.types"
 import PersonalInfo from "./PersonalInfo/PersonalInfo"
 import SelectPlan from "./SelectPlan/SelectPlan"
 
@@ -16,22 +16,22 @@ const Forms = ({ currentStep, handleChangeStep, formData }: FormsProps) => {
   const [plan, setPlan] = useState<TPlan>(formData.plan)
   // const [addons, setAddons] = useState<TAddons>(formData.addons)
 
-  const handlePrevStep = () => {
-    handleChangeStep(currentStep - 1)
-  }
-
   const handleAddPersonalInfo = (pInfo: TUserInfo) => {
     setPersonalInfo(pInfo)
     handleChangeStep(currentStep + 1)
   }
 
-  const handleSelectPlan = (selectedPlan: TPlan) => {
-    setPlan(selectedPlan)
-    handleChangeStep(currentStep + 1)
+  const handleSelectPlan = (selectedPlan: PLAN_TYPE, period: PLAN_PERIOD, step: number) => {
+    setPlan(prevPlan => ({
+      ...prevPlan,
+      selectedPlan,
+      period
+    }))
+    handleChangeStep(currentStep + step)
   }
 
   return (
-    <div>
+    <>
       {currentStep === 1 &&
         <PersonalInfo
           userInfo={personalInfo}
@@ -39,9 +39,9 @@ const Forms = ({ currentStep, handleChangeStep, formData }: FormsProps) => {
         />
       }
       {currentStep === 2 &&
-        <SelectPlan plan={plan} handleSelectPlan={handleSelectPlan} handlePrevStep={handlePrevStep} />
+        <SelectPlan plan={plan} handleSelectPlan={handleSelectPlan} />
       }
-    </div>
+    </>
   )
 }
 
