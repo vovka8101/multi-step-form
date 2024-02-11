@@ -9,36 +9,31 @@ export type TUserInfo = {
   phone: string
 }
 
-export enum PLAN_PERIOD {
-  mo,
-  yr
-}
+export type TPlanPeriod = "mo" | "yr"
 
-export enum PLAN_TYPE {
-  Arcade,
-  Advanced,
-  Pro
-}
+export type TPlanName = "Arcade" | "Advanced" | "Pro"
 
 export type TPlan = {
-  period: PLAN_PERIOD
-  selectedPlan: PLAN_TYPE
-  data: {
-    name: PLAN_TYPE
-    price: number
-    icon: string
-  }[]
+  name: TPlanName
+  price: number
+  icon: string
 }
 
 export type TAddons = {
+  readonly id: number
   name: string
   description: string
   price: number
-  selected: boolean
 }
 
 export type TFormData = {
-  userInfo: TUserInfo
-  plan: TPlan
+  plan: TPlan[]
   addons: TAddons[]
+}
+
+export type TOptions = {
+  period: TPlanPeriod
+  selectedPlan: TPlan
+  selectedAddons: TAddons[]
+  totalAddonsPrice: number
 }

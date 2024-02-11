@@ -1,7 +1,7 @@
 import React, { useState } from "react"
-import { PLAN_PERIOD, PLAN_TYPE, TPlan } from "../../../../types/subscription.types"
+import { TPlan, TPlanPeriod } from "../../../../types/subscription.types"
 import { getImageUrl } from "../../../../utils/getImageUrl"
-import { ButtonContainer, FormContainer, FormDescription, FormTitle, GoBackBtn, NextBtn } from "../styles"
+import { ButtonContainer, FormContainer, FormDescription, FormTitle, GoBackBtn, ItemTitle, NextBtn } from "../styles"
 import { Circle,
   MonthlyPeriod,
   PeriodCheckbox,
@@ -13,28 +13,30 @@ import { Circle,
   PlanInput,
   PlanPeriod,
   PlanStyled,
-  PlanTitle,
   YearlyPeriod
 } from "./styles"
 
 type SelectPlanProps = {
-  plan: TPlan
-  handleSelectPlan: (selectedPlan: PLAN_TYPE, period: PLAN_PERIOD, step: number) => void
+  plan: TPlan[]
+  currentPlan: TPlan
+  currentPeriod: TPlanPeriod
+  handleSelectPlan: (selectedPlan: TPlan, period: TPlanPeriod, step: number) => void
 }
 
-const SelectPlan = ({ plan, handleSelectPlan }: SelectPlanProps) => {
-  const [selectedPlan, setSelectedPlan] = useState<PLAN_TYPE>(plan.selectedPlan)
-  const [selectedPeriod, setSelectedPeriod] = useState<PLAN_PERIOD>(plan.period)
+const SelectPlan = ({ plan, currentPlan, currentPeriod, handleSelectPlan }: SelectPlanProps) => {
+  const [selectedPlan, setSelectedPlan] = useState(currentPlan)
+  const [selectedPeriod, setSelectedPeriod] = useState(currentPeriod)
 
   const handlePlanChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSelectedPlan(PLAN_TYPE[e.target.value as keyof typeof PLAN_TYPE])
+    const newPlan: TPlan = JSON.parse(e.target.value)
+    setSelectedPlan(newPlan)
   }
 
   const handlePeriodChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.checked) {
-      setSelectedPeriod(PLAN_PERIOD.yr)
+      setSelectedPeriod("yr")
     } else {
-      setSelectedPeriod(PLAN_PERIOD.mo)
+      setSelectedPeriod("mo")
     }
   }
 
@@ -56,40 +58,42 @@ const SelectPlan = ({ plan, handleSelectPlan }: SelectPlanProps) => {
         <FormTitle>Select your plan</FormTitle>
         <FormDescription>You have the option of monthly or yearly billing.</FormDescription>
         <PlanContainer>
-          {plan.data.map(p => (
+          {plan.map(p => (
             <PlanStyled
               key={p.name}
-              $isSelected={PLAN_TYPE[p.name] === PLAN_TYPE[selectedPlan]}
+              $isSelected={p.name === selectedPlan.name}
             >
               <PlanImg src={getImageUrl(p.icon)} alt={p.icon} />
-              <PlanTitle>{PLAN_TYPE[p.name]}</PlanTitle>
-              <PlanPeriod>
-                ${PLAN_PERIOD[selectedPeriod] === "yr" ? p.price * 10 : p.price}/{PLAN_PERIOD[selectedPeriod]}
-              </PlanPeriod>
-              {PLAN_PERIOD[selectedPeriod] === "yr" &&
-                <PlanDiscountMsg>2 months free</PlanDiscountMsg>
-              }
+              <div>
+                <ItemTitle>{p.name}</ItemTitle>
+                <PlanPeriod>
+                  ${selectedPeriod === "yr" ? p.price * 10 : p.price}/{selectedPeriod}
+                </PlanPeriod>
+                {selectedPeriod === "yr" &&
+                  <PlanDiscountMsg>2 months free</PlanDiscountMsg>
+                }
+              </div>
               <PlanInput
                 type="radio"
                 name="plan"
-                value={PLAN_TYPE[p.name]}
-                checked={PLAN_TYPE[p.name] === PLAN_TYPE[selectedPlan]}
+                value={JSON.stringify(p)}
+                checked={p.name === selectedPlan.name}
                 onChange={handlePlanChange}
               />
             </PlanStyled>
           ))}
         </PlanContainer>
         <PeriodContainer>
-          <MonthlyPeriod $isChecked={PLAN_PERIOD[selectedPeriod] === "mo"}>Monthly</MonthlyPeriod>
+          <MonthlyPeriod $isChecked={selectedPeriod === "mo"}>Monthly</MonthlyPeriod>
           <PeriodSwitcher>
-            <Circle $isChecked={PLAN_PERIOD[selectedPeriod] === "yr"}></Circle>
+            <Circle $isChecked={selectedPeriod === "yr"}></Circle>
             <PeriodCheckbox
               type="checkbox"
-              checked={PLAN_PERIOD[selectedPeriod] === "yr"}
+              checked={selectedPeriod === "yr"}
               onChange={handlePeriodChange}
             />
           </PeriodSwitcher>
-          <YearlyPeriod $isChecked={PLAN_PERIOD[selectedPeriod] === "yr"}>Yearly</YearlyPeriod>
+          <YearlyPeriod $isChecked={selectedPeriod === "yr"}>Yearly</YearlyPeriod>
         </PeriodContainer>
       </div>
       <ButtonContainer>

@@ -3,6 +3,10 @@ import styled from "styled-components"
 export const FormGroup = styled.div`
   position: relative;
   margin-bottom: 24px;
+
+  @media (orientation: portrait) {
+    margin-bottom: 12px;
+  }
 `
 
 export const LabelStyled = styled.label`
@@ -11,6 +15,10 @@ export const LabelStyled = styled.label`
   font-size: 14px;
   font-weight: 500;
   margin-bottom: 8px;
+
+  @media (orientation: portrait) {
+    margin-bottom: 4px;
+  }
 `
 
 export const InputStyled = styled.input<{ $isError?: boolean }>`
@@ -23,6 +31,11 @@ export const InputStyled = styled.input<{ $isError?: boolean }>`
   border: ${props => props.$isError ? "1px solid #ed3548" : "1px solid #d6d9e6"};
   border-radius: 8px;
   outline: none;
+
+  @media (orientation: portrait) {
+    padding: 12px 14px;
+    font-size: 15px;
+  }
 
   &::placeholder {
     color: #9699ab;

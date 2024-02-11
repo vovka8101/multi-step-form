@@ -4,17 +4,30 @@ export const PlanContainer = styled.div`
   display: flex;
   justify-content: space-between;
   margin-bottom: 30px;
+
+  @media (orientation: portrait) {
+    flex-direction: column;
+    margin-bottom: 20px;
+  }
 `
 
 export const PlanStyled = styled.label<{ $isSelected?: boolean }>`
   flex-basis: 30%;
   padding: 20px 16px;
-  background-color: ${props => props.$isSelected ? "#fafbff" : "none"};
+  background-color: ${props => props.$isSelected ? "#fafbff" : "transparent"};
   border: ${props => props.$isSelected ? "1px solid #02295a" : "1px solid #d6d9e6"};
   border-radius: 8px;
   cursor: ${props => props.$isSelected ? "default" : "pointer"};
   user-select: none;
   transition: border 0.2s;
+
+  @media (orientation: portrait) {
+    display: flex;
+    padding: 18px 16px;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 12px;
+  }
 
   &:hover {
     border: 1px solid #02295a;
@@ -27,12 +40,10 @@ export const PlanInput = styled.input`
 
 export const PlanImg = styled.img`
   margin-bottom: 42px;
-`
 
-export const PlanTitle = styled.h4`
-  color: #02295a;
-  font-weight: 700;
-  margin-bottom: 8px;
+  @media (orientation: portrait) {
+    margin-bottom: 0;
+  }
 `
 
 export const PlanPeriod = styled.p`

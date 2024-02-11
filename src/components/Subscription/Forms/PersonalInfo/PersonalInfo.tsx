@@ -1,15 +1,15 @@
 import { useState } from "react"
 import { TUserInfo } from "../../../../types/subscription.types"
-import { FormContainer, FormDescription, FormTitle, NextBtn } from "../styles"
+import { ButtonContainer, FormContainer, FormDescription, FormTitle, NextBtn } from "../styles"
 import { ErrorMsg, FormGroup, InputStyled, LabelStyled } from "./styles"
 import { checkInput } from "../../../../utils/checkInput"
 
 type PersonalInfoProps = {
   userInfo: TUserInfo
-  handleAddPersonalInfo: (pInfo: TUserInfo) => void
+  handleAddUserInfo: (pInfo: TUserInfo) => void
 }
 
-const PersonalInfo = ({ userInfo, handleAddPersonalInfo }: PersonalInfoProps) => {
+const PersonalInfo = ({ userInfo, handleAddUserInfo }: PersonalInfoProps) => {
   const [user, setUser] = useState({ error: userInfo.name ? "" : "This field is required", name: userInfo.name })
   const [email, setEmail] = useState({ error: userInfo.email ? "" : "This field is required", address: userInfo.email })
   const [phone, setPhone] = useState({ error: userInfo.phone ? "" : "This field is required", number: userInfo.phone })
@@ -40,7 +40,7 @@ const PersonalInfo = ({ userInfo, handleAddPersonalInfo }: PersonalInfoProps) =>
     e.preventDefault()
 
     if (!(user.error || email.error || phone.error)) {
-      handleAddPersonalInfo({
+      handleAddUserInfo({
         name: user.name,
         email: email.address,
         phone: phone.number
@@ -89,7 +89,10 @@ const PersonalInfo = ({ userInfo, handleAddPersonalInfo }: PersonalInfoProps) =>
           {(phone.error && isSubmitted) && <ErrorMsg>{phone.error}</ErrorMsg>}
         </FormGroup>
       </div>
-      <NextBtn>Next Step</NextBtn>
+      <ButtonContainer>
+        <span></span>
+        <NextBtn>Next Step</NextBtn>
+      </ButtonContainer>
     </FormContainer>
   )
 }

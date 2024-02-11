@@ -60,4 +60,9 @@ export const AppStyled = styled.div`
   padding: 1rem;
   background-color: white;
   border-radius: 16px;
+
+  @media (orientation: portrait) {
+    margin: 100px 1rem;
+    border-radius: 10px;
+  }
 `
