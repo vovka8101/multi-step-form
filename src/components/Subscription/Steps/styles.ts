@@ -7,7 +7,7 @@ export const StyledSteps = styled.aside`
   flex-basis: 30%;
   padding: 38px 32px;
   color: white;
-  background-image: url(${bgImg});
+  background-image: url('${bgImg}');
   background-repeat: no-repeat;
   background-size: cover;
 
@@ -20,7 +20,7 @@ export const StyledSteps = styled.aside`
     display: flex;
     align-items: flex-start;
     justify-content: center;
-    background-image: url(${bgImgMobile});
+    background-image: url('${bgImgMobile}');
     z-index: -1;
   }
 `
