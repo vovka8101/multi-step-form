@@ -458,7 +458,7 @@ Error generating stack: `+i.message+`
   flex-basis: 30%;
   padding: 38px 32px;
   color: white;
-  background-image: url(${t2});
+  background-image: url('${t2}');
   background-repeat: no-repeat;
   background-size: cover;
 
@@ -471,7 +471,7 @@ Error generating stack: `+i.message+`
     display: flex;
     align-items: flex-start;
     justify-content: center;
-    background-image: url(${n2});
+    background-image: url('${n2}');
     z-index: -1;
   }
 `,o2=z.div`
