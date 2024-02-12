@@ -453,12 +453,12 @@ Error generating stack: `+i.message+`
 `,qy=z.p`
   color: #9699ab;
   line-height: 26px;
-`,by=()=>k.jsxs(Nm,{children:[k.jsx(Jy,{src:Xy,alt:"Thank you"}),k.jsx(no,{children:"Thank you!"}),k.jsx(qy,{children:"Thanks for confirming your subscription! We hope you have fun using our platform. If you ever need support, please feel free to email us at support@loremgaming.com."})]}),e2=()=>{const{step:e}=tr(o=>o.subscription),[t,n]=Ne.useState(!1),r=()=>{n(!0)};return k.jsxs(k.Fragment,{children:[e===1&&k.jsx(fy,{}),e===2&&k.jsx(Oy,{}),e===3&&k.jsx(Ly,{}),e===4&&!t&&k.jsx(Yy,{handleSubmitSubscription:r}),t&&k.jsx(by,{})]})},t2="data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20width='274'%20height='568'%20fill='none'%20viewBox='0%200%20274%20568'%3e%3crect%20width='274'%20height='568'%20fill='%23483EFF'%20rx='10'/%3e%3cmask%20id='a'%20width='274'%20height='568'%20x='0'%20y='0'%20maskUnits='userSpaceOnUse'%20style='mask-type:alpha'%3e%3crect%20width='274'%20height='568'%20fill='%23fff'%20rx='10'/%3e%3c/mask%3e%3cg%20mask='url(%23a)'%3e%3cpath%20fill='%236259FF'%20fill-rule='evenodd'%20d='M-34.692%20543.101C3.247%20632.538%20168.767%20685.017%20211.96%20612.52c43.194-72.497-66.099-85.653-104.735-160.569-38.635-74.916-68.657-121.674-124.482-104.607-55.824%2017.068-55.375%20106.32-17.436%20195.757Z'%20clip-rule='evenodd'/%3e%3cpath%20fill='%23F9818E'%20fill-rule='evenodd'%20d='M233.095%20601.153c60.679-28.278%2092.839-143.526%2041.875-171.528-50.965-28.003-57.397%2047.579-108.059%2075.987-50.662%2028.408-82.14%2050.207-69.044%2088.241%2013.096%2038.034%2074.549%2035.578%20135.228%207.3Z'%20clip-rule='evenodd'/%3e%3cpath%20stroke='%23fff'%20stroke-linecap='round'%20stroke-linejoin='bevel'%20stroke-width='5'%20d='m165.305%20469.097%2010.607-10.806M209.461%20474.581l-12.506-10.503M187.56%20488.991l-6.908%2014.798'/%3e%3cpath%20fill='%23FFAF7E'%20d='M.305%20546.891c37.003%200%2067-29.997%2067-67s-29.997-67-67-67-67%2029.997-67%2067%2029.997%2067%2067%2067Z'/%3e%3c/g%3e%3c/svg%3e",n2="data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20xmlns:xlink='http://www.w3.org/1999/xlink'%20width='375'%20height='172'%20viewBox='0%200%20375%20172'%3e%3cdefs%3e%3cpath%20id='a'%20d='M0%200h375v172H0z'/%3e%3c/defs%3e%3cg%20fill='none'%20fill-rule='evenodd'%3e%3cmask%20id='b'%20fill='%23fff'%3e%3cuse%20xlink:href='%23a'/%3e%3c/mask%3e%3cuse%20xlink:href='%23a'%20fill='%23483EFF'/%3e%3cg%20mask='url(%23b)'%3e%3cg%20transform='translate(-151.029%20-133.957)'%3e%3cpath%20fill='%236259FF'%20d='M79.546%20349.634c54.547%20128.646%20292.524%20204.132%20354.626%2099.852%2062.102-104.28-95.035-123.204-150.583-230.963-55.547-107.759-98.711-175.015-178.973-150.466C24.354%2092.607%2025%20220.987%2079.546%20349.634Z'/%3e%3cellipse%20cx='129.864'%20cy='258.711'%20fill='%23FFAF7E'%20rx='96.329'%20ry='96.373'/%3e%3cpath%20fill='%23F9818E'%20d='M464.88%20433.146c87.31-40.69%20133.585-206.525%2060.253-246.82-73.333-40.293-82.587%2068.465-155.485%20109.343-72.898%2040.877-118.192%2072.245-99.348%20126.973%2018.845%2054.728%20107.27%2051.194%20194.58%2010.504Z'/%3e%3cg%20stroke='%23FFF'%20stroke-linecap='round'%20stroke-linejoin='bevel'%20stroke-width='5'%3e%3cpath%20d='m367.336%20243.125%2015.263-15.549M430.872%20251.016l-17.995-15.112M399.36%20271.751l-9.94%2021.293'/%3e%3c/g%3e%3c/g%3e%3c/g%3e%3c/g%3e%3c/svg%3e",r2=z.aside`
+`,by=()=>k.jsxs(Nm,{children:[k.jsx(Jy,{src:Xy,alt:"Thank you"}),k.jsx(no,{children:"Thank you!"}),k.jsx(qy,{children:"Thanks for confirming your subscription! We hope you have fun using our platform. If you ever need support, please feel free to email us at support@loremgaming.com."})]}),e2=()=>{const{step:e}=tr(o=>o.subscription),[t,n]=Ne.useState(!1),r=()=>{n(!0)};return k.jsxs(k.Fragment,{children:[e===1&&k.jsx(fy,{}),e===2&&k.jsx(Oy,{}),e===3&&k.jsx(Ly,{}),e===4&&!t&&k.jsx(Yy,{handleSubmitSubscription:r}),t&&k.jsx(by,{})]})},t2=z.aside`
   min-width: 220px;
   flex-basis: 30%;
   padding: 38px 32px;
   color: white;
-  background-image: url('${t2}');
+  background-image: url(${e=>e.$bgImg});
   background-repeat: no-repeat;
   background-size: cover;
 
@@ -471,10 +471,10 @@ Error generating stack: `+i.message+`
     display: flex;
     align-items: flex-start;
     justify-content: center;
-    background-image: url('${n2}');
+    background-image: url(${e=>e.$bgImgMobile});
     z-index: -1;
   }
-`,o2=z.div`
+`,n2=z.div`
   display: flex;
   align-items: center;
   gap: 1rem;
@@ -483,7 +483,7 @@ Error generating stack: `+i.message+`
   @media (orientation: portrait) {
     margin-bottom: 0;
   }
-`,i2=z.div`
+`,r2=z.div`
   width: 33px;
   height: 33px;
   padding: 7px 0;
@@ -494,7 +494,7 @@ Error generating stack: `+i.message+`
   background-color: ${e=>e.$isStepActive?"#bfe2fd":"transparent"};
   border-radius: 50%;
   border: ${e=>e.$isStepActive?"1px solid transparent":"1px solid white"};
-`,l2=z.p`
+`,o2=z.p`
   font-size: 12px;
   line-height: 18px;
   color: #adbeff;
@@ -503,7 +503,7 @@ Error generating stack: `+i.message+`
   @media (orientation: portrait) {
     display: none;
   }
-`,u2=z.h2`
+`,i2=z.h2`
   color: #fafbff;
   font-size: 1rem;
   font-weight: 500;
@@ -512,7 +512,7 @@ Error generating stack: `+i.message+`
   @media (orientation: portrait) {
     display: none;
   }
-`,s2=({stepNumber:e,stepTitle:t,isStepActive:n})=>k.jsxs(o2,{children:[k.jsx(i2,{$isStepActive:n,children:e}),k.jsxs("div",{children:[k.jsxs(l2,{children:["Step ",e]}),k.jsx(u2,{children:t})]})]}),a2=()=>{const e=tr(t=>t.subscription.step);return k.jsx(r2,{children:ty.map(t=>k.jsx(s2,{...t,isStepActive:e===t.stepNumber},t.stepNumber))})},c2=z.div`
+`,l2=({stepNumber:e,stepTitle:t,isStepActive:n})=>k.jsxs(n2,{children:[k.jsx(r2,{$isStepActive:n,children:e}),k.jsxs("div",{children:[k.jsxs(o2,{children:["Step ",e]}),k.jsx(i2,{children:t})]})]}),u2="data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20width='274'%20height='568'%20fill='none'%20viewBox='0%200%20274%20568'%3e%3crect%20width='274'%20height='568'%20fill='%23483EFF'%20rx='10'/%3e%3cmask%20id='a'%20width='274'%20height='568'%20x='0'%20y='0'%20maskUnits='userSpaceOnUse'%20style='mask-type:alpha'%3e%3crect%20width='274'%20height='568'%20fill='%23fff'%20rx='10'/%3e%3c/mask%3e%3cg%20mask='url(%23a)'%3e%3cpath%20fill='%236259FF'%20fill-rule='evenodd'%20d='M-34.692%20543.101C3.247%20632.538%20168.767%20685.017%20211.96%20612.52c43.194-72.497-66.099-85.653-104.735-160.569-38.635-74.916-68.657-121.674-124.482-104.607-55.824%2017.068-55.375%20106.32-17.436%20195.757Z'%20clip-rule='evenodd'/%3e%3cpath%20fill='%23F9818E'%20fill-rule='evenodd'%20d='M233.095%20601.153c60.679-28.278%2092.839-143.526%2041.875-171.528-50.965-28.003-57.397%2047.579-108.059%2075.987-50.662%2028.408-82.14%2050.207-69.044%2088.241%2013.096%2038.034%2074.549%2035.578%20135.228%207.3Z'%20clip-rule='evenodd'/%3e%3cpath%20stroke='%23fff'%20stroke-linecap='round'%20stroke-linejoin='bevel'%20stroke-width='5'%20d='m165.305%20469.097%2010.607-10.806M209.461%20474.581l-12.506-10.503M187.56%20488.991l-6.908%2014.798'/%3e%3cpath%20fill='%23FFAF7E'%20d='M.305%20546.891c37.003%200%2067-29.997%2067-67s-29.997-67-67-67-67%2029.997-67%2067%2029.997%2067%2067%2067Z'/%3e%3c/g%3e%3c/svg%3e",s2="data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20xmlns:xlink='http://www.w3.org/1999/xlink'%20width='375'%20height='172'%20viewBox='0%200%20375%20172'%3e%3cdefs%3e%3cpath%20id='a'%20d='M0%200h375v172H0z'/%3e%3c/defs%3e%3cg%20fill='none'%20fill-rule='evenodd'%3e%3cmask%20id='b'%20fill='%23fff'%3e%3cuse%20xlink:href='%23a'/%3e%3c/mask%3e%3cuse%20xlink:href='%23a'%20fill='%23483EFF'/%3e%3cg%20mask='url(%23b)'%3e%3cg%20transform='translate(-151.029%20-133.957)'%3e%3cpath%20fill='%236259FF'%20d='M79.546%20349.634c54.547%20128.646%20292.524%20204.132%20354.626%2099.852%2062.102-104.28-95.035-123.204-150.583-230.963-55.547-107.759-98.711-175.015-178.973-150.466C24.354%2092.607%2025%20220.987%2079.546%20349.634Z'/%3e%3cellipse%20cx='129.864'%20cy='258.711'%20fill='%23FFAF7E'%20rx='96.329'%20ry='96.373'/%3e%3cpath%20fill='%23F9818E'%20d='M464.88%20433.146c87.31-40.69%20133.585-206.525%2060.253-246.82-73.333-40.293-82.587%2068.465-155.485%20109.343-72.898%2040.877-118.192%2072.245-99.348%20126.973%2018.845%2054.728%20107.27%2051.194%20194.58%2010.504Z'/%3e%3cg%20stroke='%23FFF'%20stroke-linecap='round'%20stroke-linejoin='bevel'%20stroke-width='5'%3e%3cpath%20d='m367.336%20243.125%2015.263-15.549M430.872%20251.016l-17.995-15.112M399.36%20271.751l-9.94%2021.293'/%3e%3c/g%3e%3c/g%3e%3c/g%3e%3c/g%3e%3c/svg%3e",a2=()=>{const e=tr(t=>t.subscription.step);return k.jsx(t2,{$bgImg:u2,$bgImgMobile:s2,children:ty.map(t=>k.jsx(l2,{...t,isStepActive:e===t.stepNumber},t.stepNumber))})},c2=z.div`
   min-height: 568px;
   display: flex;
   gap: 1em;
