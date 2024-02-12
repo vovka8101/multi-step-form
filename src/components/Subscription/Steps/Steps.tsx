@@ -1,19 +1,11 @@
-import { TStep } from "../../../types/subscription.types"
+import { useAppSelector } from "../../../app/hooks"
+import { STEPS } from "../../../data/subscriptionData"
 import Step from "./Step"
 import { StyledSteps } from "./styles"
 
-const STEPS: TStep[] = [
-  {stepNumber: 1, stepTitle: "Your info"},
-  {stepNumber: 2, stepTitle: "Select plan"},
-  {stepNumber: 3, stepTitle: "Add-ons"},
-  {stepNumber: 4, stepTitle: "Summary"}
-]
+const Steps = () => {
+  const currentStep = useAppSelector(state => state.subscription.step)
 
-type TStepsProps = {
-  currentStep: number
-}
-
-const Steps = ({ currentStep }: TStepsProps) => {
   return (
     <StyledSteps>
       {STEPS.map(step => (

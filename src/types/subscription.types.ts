@@ -14,6 +14,7 @@ export type TPlanPeriod = "mo" | "yr"
 export type TPlanName = "Arcade" | "Advanced" | "Pro"
 
 export type TPlan = {
+  readonly id: number
   name: TPlanName
   price: number
   icon: string
@@ -26,14 +27,11 @@ export type TAddons = {
   price: number
 }
 
-export type TFormData = {
-  plan: TPlan[]
-  addons: TAddons[]
-}
-
-export type TOptions = {
+export type TSubscriptionState = {
+  step: number
+  userInfo: TUserInfo
   period: TPlanPeriod
   selectedPlan: TPlan
   selectedAddons: TAddons[]
-  totalAddonsPrice: number
+  totalPrice: number
 }

@@ -1,15 +1,14 @@
 import { useState } from "react"
-import { TUserInfo } from "../../../../types/subscription.types"
 import { ButtonContainer, FormContainer, FormDescription, FormTitle, NextBtn } from "../styles"
 import { ErrorMsg, FormGroup, InputStyled, LabelStyled } from "./styles"
 import { checkInput } from "../../../../utils/checkInput"
+import { useAppDispatch, useAppSelector } from "../../../../app/hooks"
+import { changeStep, setUserInfo } from "../../../../features/subscription/subscriptionSlice"
 
-type PersonalInfoProps = {
-  userInfo: TUserInfo
-  handleAddUserInfo: (pInfo: TUserInfo) => void
-}
 
-const PersonalInfo = ({ userInfo, handleAddUserInfo }: PersonalInfoProps) => {
+const PersonalInfo = () => {
+  const { userInfo } = useAppSelector(state => state.subscription)
+  const dispatch = useAppDispatch()
   const [user, setUser] = useState({ error: userInfo.name ? "" : "This field is required", name: userInfo.name })
   const [email, setEmail] = useState({ error: userInfo.email ? "" : "This field is required", address: userInfo.email })
   const [phone, setPhone] = useState({ error: userInfo.phone ? "" : "This field is required", number: userInfo.phone })
@@ -40,11 +39,13 @@ const PersonalInfo = ({ userInfo, handleAddUserInfo }: PersonalInfoProps) => {
     e.preventDefault()
 
     if (!(user.error || email.error || phone.error)) {
-      handleAddUserInfo({
+      const newUserInfo = {
         name: user.name,
         email: email.address,
         phone: phone.number
-      })
+      }
+      dispatch(setUserInfo(newUserInfo))
+      dispatch(changeStep(2))
     }
 
     setIsSubmitted(true)

@@ -1,4 +1,5 @@
-import { TOptions } from "../../../../types/subscription.types"
+import { useAppDispatch, useAppSelector } from "../../../../app/hooks"
+import { changeStep } from "../../../../features/subscription/subscriptionSlice"
 import { ButtonContainer,
   FormContainer,
   FormDescription,
@@ -6,37 +7,27 @@ import { ButtonContainer,
   GoBackBtn,
   ItemTitle,
   SubmitBtn } from "../styles"
-import { AddonName, AddonPrice, AddonRow, ChangePlanLink, PlanPrice, PlanRow, SummaryContent, TotalPrice, TotalPriceContainer } from "./styles"
+import { 
+  AddonName, 
+  AddonPrice, 
+  AddonRow, 
+  ChangePlanLink, 
+  PlanPrice, 
+  PlanRow, 
+  SummaryContent, 
+  TotalPrice, 
+  TotalPriceContainer } from "./styles"
 
 type SummaryProps = {
-  options: TOptions
-  handlePrevStep: (step: number) => void
   handleSubmitSubscription: () => void
 }
 
-const Summary = ({ options, handlePrevStep, handleSubmitSubscription }: SummaryProps) => {
-  const getTotalPrice = () => {
-    if (options.period === "mo") {
-      return options.selectedPlan.price + options.totalAddonsPrice
-    }
-
-    return (options.selectedPlan.price + options.totalAddonsPrice) * 10
-  }
-
-  const handleSubmit = (e: React.SyntheticEvent<HTMLFormElement, SubmitEvent>) => {
-    e.preventDefault()
-
-    const btn = e.nativeEvent.submitter as HTMLButtonElement
-
-    if (btn.name === "prev") {
-      handlePrevStep(3)
-    } else {
-      handleSubmitSubscription()
-    }
-  }
+const Summary = ({ handleSubmitSubscription }: SummaryProps) => {
+  const options = useAppSelector(state => state.subscription)
+  const dispatch = useAppDispatch()
 
   return (
-    <FormContainer onSubmit={handleSubmit}>
+    <FormContainer onSubmit={e => e.preventDefault()}>
       <div>
         <FormTitle>Finishing up</FormTitle>
         <FormDescription>Double-check everything looks OK before confirming.</FormDescription>
@@ -46,7 +37,7 @@ const Summary = ({ options, handlePrevStep, handleSubmitSubscription }: SummaryP
               <ItemTitle>
                 {options.selectedPlan.name} ({options.period === "mo" ? "Monthly" : "Yearly"})
               </ItemTitle>
-              <ChangePlanLink onClick={() => { handlePrevStep(2) }}>Change</ChangePlanLink>
+              <ChangePlanLink onClick={() => { dispatch(changeStep(2)) }}>Change</ChangePlanLink>
             </div>
             <PlanPrice>
               ${options.period === "mo"
@@ -68,12 +59,12 @@ const Summary = ({ options, handlePrevStep, handleSubmitSubscription }: SummaryP
         </SummaryContent>
         <TotalPriceContainer>
           <p>Total (per {options.period === "mo" ? "month" : "year"})</p>
-          <TotalPrice>+${getTotalPrice()}/{options.period}</TotalPrice>
+          <TotalPrice>+${options.totalPrice}/{options.period}</TotalPrice>
         </TotalPriceContainer>
       </div>
       <ButtonContainer>
-        <GoBackBtn name="prev">Go Back</GoBackBtn>
-        <SubmitBtn name="submit">Confirm</SubmitBtn>
+        <GoBackBtn onClick={() => { dispatch(changeStep(3)) }}>Go Back</GoBackBtn>
+        <SubmitBtn onClick={() => { handleSubmitSubscription() }}>Confirm</SubmitBtn>
       </ButtonContainer>
     </FormContainer>
   )

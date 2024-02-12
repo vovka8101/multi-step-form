@@ -1,5 +1,5 @@
-import { useRef, useState } from "react"
-import { TAddons, TPlanPeriod } from "../../../../types/subscription.types"
+import { useState } from "react"
+import { TAddons } from "../../../../types/subscription.types"
 import { ButtonContainer,
   FormContainer,
   FormDescription,
@@ -8,55 +8,44 @@ import { ButtonContainer,
   ItemTitle,
   NextBtn } from "../styles"
 import { AddonCheckbox, AddonDescription, AddonInfo, AddonLabel, AddonPrice } from "./styles"
+import { ADDONS } from "../../../../data/subscriptionData"
+import { useAppDispatch, useAppSelector } from "../../../../app/hooks"
+import { calculateTotalPrice, changeStep, setSelectedAddons } from "../../../../features/subscription/subscriptionSlice"
 
-type AddonsProps = {
-  addons: TAddons[]
-  totalAddonsPrice: number
-  currentAddons: TAddons[]
-  handleSelectAddons: (selectedAddons: TAddons[], totalPrice: number, step: number) => void
-  selectedPeriod: TPlanPeriod
-}
 
-const Addons = ({ addons, totalAddonsPrice, currentAddons, handleSelectAddons, selectedPeriod }: AddonsProps) => {
-  const [selectedAddons, setSelectedAddons] = useState(currentAddons)
-  const totalPrice = useRef(totalAddonsPrice)
+const Addons = () => {
+  const { selectedAddons, period } = useAppSelector(state => state.subscription)
+  const [currentAddons, setCurrentAddons] = useState(selectedAddons)
+  const dispatch = useAppDispatch()
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const selectedAddon: TAddons = JSON.parse(e.target.value)
 
     if (e.target.checked) {
-      setSelectedAddons(prevAddons => ([
+      setCurrentAddons(prevAddons => ([
         ...prevAddons,
         selectedAddon
       ]))
-      totalPrice.current += selectedAddon.price
     } else {
-      setSelectedAddons(prevAddons => {
+      setCurrentAddons(prevAddons => {
         return prevAddons.filter(addon => addon.id !== selectedAddon.id)
       })
-      totalPrice.current -= selectedAddon.price
     }
   }
 
-  const handleSubmit = (e: React.SyntheticEvent<HTMLFormElement, SubmitEvent>) => {
-    e.preventDefault()
-
-    const btn = e.nativeEvent.submitter as HTMLButtonElement
-
-    if (btn.name === "prev") {
-      handleSelectAddons(selectedAddons, totalPrice.current, -1)
-    } else {
-      handleSelectAddons(selectedAddons, totalPrice.current, 1)
-    }
+  const handleStepChange = (step: number) => {
+    dispatch(setSelectedAddons(currentAddons))
+    if (step === 4) dispatch(calculateTotalPrice())
+    dispatch(changeStep(step))
   }
 
   return (
-    <FormContainer onSubmit={handleSubmit}>
+    <FormContainer onSubmit={e => e.preventDefault()}>
       <div>
         <FormTitle>Pick add-ons</FormTitle>
         <FormDescription>Add-ons help enhance your gaming experience.</FormDescription>
-        {addons.map(addon => {
-          const isChecked = !!selectedAddons.find(ad => ad.id === addon.id)
+        {ADDONS.map(addon => {
+          const isChecked = !!currentAddons.find(ad => ad.id === addon.id)
           return (
             <AddonLabel key={addon.id} $isChecked={isChecked}>
               <AddonCheckbox
@@ -70,15 +59,15 @@ const Addons = ({ addons, totalAddonsPrice, currentAddons, handleSelectAddons, s
                 <AddonDescription>{addon.description}</AddonDescription>
               </AddonInfo>
               <AddonPrice>
-                +${selectedPeriod === "mo" ? addon.price : addon.price * 10}/{selectedPeriod}
+                +${period === "mo" ? addon.price : addon.price * 10}/{period}
               </AddonPrice>
             </AddonLabel>
           )
         })}
       </div>
       <ButtonContainer>
-        <GoBackBtn name="prev">Go Back</GoBackBtn>
-        <NextBtn name="next">Next Step</NextBtn>
+        <GoBackBtn onClick={() => { handleStepChange(2) }}>Go Back</GoBackBtn>
+        <NextBtn onClick={() => { handleStepChange(4) }}>Next Step</NextBtn>
       </ButtonContainer>
     </FormContainer>
   )

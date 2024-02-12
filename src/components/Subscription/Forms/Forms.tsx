@@ -1,88 +1,32 @@
 import { useState } from "react"
-import { TAddons, TFormData, TPlan, TUserInfo, TPlanPeriod } from "../../../types/subscription.types"
 import PersonalInfo from "./PersonalInfo/PersonalInfo"
 import SelectPlan from "./SelectPlan/SelectPlan"
 import Addons from "./AddOns/Addons"
 import Summary from "./Summary/Summary"
 import Thanks from "./Thanks/Thanks"
-import { initialOptions, initialUserInfo } from "../../../data/data"
+import { useAppSelector } from "../../../app/hooks"
 
-
-type FormsProps = {
-  currentStep: number
-  handleChangeStep: (step: number) => void
-  formData: TFormData
-  handleSubscription: (fData: TFormData) => void
-}
-
-const Forms = ({ currentStep, handleChangeStep, formData }: FormsProps) => {
-  const [userInfo, setUserInfo] = useState<TUserInfo>(initialUserInfo)
-  const [options, setOptions] = useState(initialOptions)
+const Forms = () => {
+  const { step } = useAppSelector(state => state.subscription)
   const [isConfirmed, setIsConfirmed] = useState(false)
-
-  const handlePrevStep = (step: number) => {
-    handleChangeStep(step)
-  }
-
-  const handleAddUserInfo = (pInfo: TUserInfo) => {
-    setUserInfo(pInfo)
-    handleChangeStep(currentStep + 1)
-  }
-
-  const handleSelectPlan = (selectedPlan: TPlan, period: TPlanPeriod, step: number) => {
-    setOptions(prevOptions => ({
-      ...prevOptions,
-      period,
-      selectedPlan
-    }))
-    handleChangeStep(currentStep + step)
-  }
-
-  const handleSelectAddons = (selectedAddons: TAddons[], totalPrice: number, step: number) => {
-    setOptions(prevOptions => ({
-      ...prevOptions,
-      selectedAddons,
-      totalAddonsPrice: totalPrice
-    }))
-    handleChangeStep(currentStep + step)
-  }
 
   const handleSubmitSubscription = () => {
     setIsConfirmed(true)
-    console.log(options)
   }
 
   return (
     <>
-      {currentStep === 1 &&
-        <PersonalInfo
-          userInfo={userInfo}
-          handleAddUserInfo={handleAddUserInfo}
-        />
+      {step === 1 &&
+        <PersonalInfo />
       }
-      {currentStep === 2 &&
-        <SelectPlan
-          plan={formData.plan}
-          currentPlan={options.selectedPlan}
-          currentPeriod={options.period}
-          handleSelectPlan={handleSelectPlan} 
-        />
+      {step === 2 &&
+        <SelectPlan />
       }
-      {currentStep === 3 &&
-        <Addons
-          addons={formData.addons}
-          totalAddonsPrice={options.totalAddonsPrice}
-          currentAddons={options.selectedAddons}
-          handleSelectAddons={handleSelectAddons}
-          selectedPeriod={options.period}
-        />
+      {step === 3 &&
+        <Addons />
       }
-      {(currentStep === 4 && !isConfirmed) &&
-        <Summary
-          options={options}
-          handlePrevStep={handlePrevStep}
-          handleSubmitSubscription={handleSubmitSubscription}
-        />
+      {(step === 4 && !isConfirmed) &&
+        <Summary handleSubmitSubscription={handleSubmitSubscription} />
       }
       {isConfirmed && <Thanks />}
     </>

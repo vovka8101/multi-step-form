@@ -11,6 +11,7 @@ export const AddonLabel = styled.label<{ $isChecked?: boolean }>`
   border-radius: 8px;
   margin-bottom: 16px;
   cursor: pointer;
+  user-select: none;
   transition: border 0.2s;
 
   @media (orientation: portrait) {

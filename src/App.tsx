@@ -3,8 +3,6 @@ import Subscription from "./components/Subscription/Subscription"
 
 
 function App() {
-  // const [state, setState] = useState([])
-
   return (
     <AppStyled>
       <GlobalStyles />
