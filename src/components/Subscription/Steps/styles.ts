@@ -1,8 +1,6 @@
 import styled from "styled-components"
-import { getImageUrl } from "../../../utils/getImageUrl"
-
-const bgImg = getImageUrl("bg-sidebar-desktop.svg")
-const bgImgMobile = getImageUrl("bg-sidebar-mobile.svg")
+import bgImg from "/images/bg-sidebar-desktop.svg"
+import bgImgMobile from "/images/bg-sidebar-mobile.svg"
 
 export const StyledSteps = styled.aside`
   min-width: 220px;
