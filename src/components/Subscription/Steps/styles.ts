@@ -1,11 +1,15 @@
 import styled from "styled-components"
+import { getImageUrl } from "../../../utils/getImageUrl"
 
-export const StyledSteps = styled.aside<{ $bgImg?: string, $bgImgMobile?: string }>`
+const bgImg = getImageUrl("bg-sidebar-desktop.svg")
+const bgImgMobile = getImageUrl("bg-sidebar-mobile.svg")
+
+export const StyledSteps = styled.aside`
   min-width: 220px;
   flex-basis: 30%;
   padding: 38px 32px;
   color: white;
-  background-image: url(${props => props.$bgImg});
+  background-image: url(${bgImg});
   background-repeat: no-repeat;
   background-size: cover;
 
@@ -18,7 +22,7 @@ export const StyledSteps = styled.aside<{ $bgImg?: string, $bgImgMobile?: string
     display: flex;
     align-items: flex-start;
     justify-content: center;
-    background-image: url(${props => props.$bgImgMobile});
+    background-image: url(${bgImgMobile});
     z-index: -1;
   }
 `
