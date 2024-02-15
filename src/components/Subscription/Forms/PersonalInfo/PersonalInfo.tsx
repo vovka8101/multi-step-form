@@ -4,35 +4,36 @@ import { ErrorMsg, FormGroup, InputStyled, LabelStyled } from "./styles"
 import { checkInput } from "../../../../utils/checkInput"
 import { useAppDispatch, useAppSelector } from "../../../../app/hooks"
 import { changeStep, setUserInfo } from "../../../../features/subscription/subscriptionSlice"
+import { usePersonalInfo } from "../../../../hooks/usePersonalInfo"
 
 
 const PersonalInfo = () => {
   const { userInfo } = useAppSelector(state => state.subscription)
   const dispatch = useAppDispatch()
-  const [user, setUser] = useState({ error: userInfo.name ? "" : "This field is required", name: userInfo.name })
-  const [email, setEmail] = useState({ error: userInfo.email ? "" : "This field is required", address: userInfo.email })
-  const [phone, setPhone] = useState({ error: userInfo.phone ? "" : "This field is required", number: userInfo.phone })
+  const [user, setUser] = usePersonalInfo(userInfo.name)
+  const [email, setEmail] = usePersonalInfo(userInfo.email)
+  const [phone, setPhone] = usePersonalInfo(userInfo.phone)
   const [isSubmitted, setIsSubmitted] = useState(false)
 
   const handleNameInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target
     const err = checkInput(value, "name")
 
-    setUser({ error: err, name: e.target.value })
+    setUser({ error: err, value: e.target.value })
   }
 
   const handleEmailInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target
     const err = checkInput(value, "email")
 
-    setEmail({ error: err, address: value })
+    setEmail({ error: err, value })
   }
 
   const handlePhoneInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target
     const err = checkInput(value, "phone")
 
-    setPhone({ error: err, number: value })
+    setPhone({ error: err, value })
   }
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -40,9 +41,9 @@ const PersonalInfo = () => {
 
     if (!(user.error || email.error || phone.error)) {
       const newUserInfo = {
-        name: user.name,
-        email: email.address,
-        phone: phone.number
+        name: user.value,
+        email: email.value,
+        phone: phone.value
       }
       dispatch(setUserInfo(newUserInfo))
       dispatch(changeStep(2))
@@ -60,7 +61,7 @@ const PersonalInfo = () => {
           <LabelStyled>Name</LabelStyled>
           <InputStyled
             type="text"
-            value={user.name}
+            value={user.value}
             onChange={handleNameInput}
             placeholder="e.g. Stephen King"
             $isError={!!(user.error && isSubmitted)}
@@ -71,7 +72,7 @@ const PersonalInfo = () => {
           <LabelStyled>Email Address</LabelStyled>
           <InputStyled
             type="email"
-            value={email.address}
+            value={email.value}
             onChange={handleEmailInput}
             placeholder="e.g. stephenking@lorem.com"
             $isError={!!(email.error && isSubmitted)}
@@ -82,7 +83,7 @@ const PersonalInfo = () => {
           <LabelStyled>Phone Number</LabelStyled>
           <InputStyled
             type="tel"
-            value={phone.number}
+            value={phone.value}
             onChange={handlePhoneInput}
             placeholder="e.g. +1 234 567 890"
             $isError={!!(phone.error && isSubmitted)}
